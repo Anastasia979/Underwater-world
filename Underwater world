@@ -174,7 +174,7 @@ def draw_shark(x, y):
     fd(45)
     lt(150)
     fd(3)
-    for i in range(25):
+    for i in range(20):
         fd(4)
         lt(1)
     lt(330)
@@ -215,7 +215,7 @@ def draw_buble(x, y):
     do_tp(x, y)
     color('dark turquoise', 'light steel blue')
     circle(20)
-    do_tp(xcor() - 1.5, ycor() + 30)
+    do_tp(xcor() - 15, ycor() + 20)
     color('white')
     begin_fill()
     pensize(10)
