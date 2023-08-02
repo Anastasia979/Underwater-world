@@ -1,0 +1,301 @@
+from turtle import *
+from random import randint, choice
+
+screen = Screen()
+screen.bgcolor('dodger blue')
+speed(-1)
+plant_coor = ((-420, -120), (-300, -240), (150, -300))
+seaweed_coor = ((-350, -200), (-390, -250), (-330, -360), (-100, -200), (-130, -270),
+                (-30, -240), (10, -220), (60, -300), (250, -370), (320, -320))
+fish_coor = ((300, -200), (-400, 300), (-350, 250))
+bubble_coor = ((30, 300), (90, 350), (10, 370), (-170, 50), (-250, 70), (-190, 160), (10, 40), (140, 0), (200, -20), (-360, 390), (-250, 350))
+
+t = Turtle()
+t.penup()
+t.goto(-150, 350)
+t.pendown()
+t.ht()
+t.write("Underwater world", font=("Arial", 30, "normal"))
+
+
+ht()
+
+
+def do_tp(x, y):
+    pu()
+    goto(x, y)
+    pd()
+
+
+def draw_sand():
+    do_tp(-480, -100)
+    color('gold')
+    begin_fill()
+    for i in range(5):
+        rt(5)
+        fd(200)
+    rt(65)
+    fd(100)
+    rt(90)
+    fd(1000)
+    end_fill()
+
+
+def draw_plants(x, y):
+    size = randint(20, 90)
+    color('lime')
+    do_tp(x, y)
+    begin_fill()
+    for i in range(3):
+        circle(size, 180)
+        left(90)
+    end_fill()
+
+
+def draw_seaweed(x, y):
+    size = randint(20, 70)
+    direction = choice([-size, size])
+    do_tp(x, y)
+    color('sea green')
+    pensize(10)
+    if direction < 0:
+        lt(90)
+    circle(direction, 90)
+    circle(-direction, 100)
+
+
+def draw_fish(x, y):
+    pensize(1)
+    do_tp(x, y)
+    color('orange')
+    begin_fill()
+    lt(30)
+    fd(20)
+    rt(90)
+    circle(30, 120)
+    lt(90)
+    circle(50, 60)
+    rt(70)
+    fd(25)
+    lt(170)
+    circle(-20, 100)
+    end_fill()
+    do_tp(xcor() + 60, ycor() + 15)
+    color('black', 'slate grey')
+    begin_fill()
+    circle(4)
+    end_fill()
+    do_tp(xcor() + 2, ycor() - 4)
+    dot(3)
+    do_tp(xcor() - 25, ycor() - 10)
+    color('white')
+    lt(180)
+    circle(10, 130)
+    do_tp(xcor() + 10, ycor() + 2)
+    color('white')
+    circle(12, -140)
+
+
+def draw_shark(x, y):
+    do_tp(x, y)
+    color('navy')
+    begin_fill()
+    pensize(2)
+    coor = pos()
+    lt(180)
+    for i in range(18):
+        fd(i)
+        lt(1)
+    lt(90)
+    for i in range(15):
+        fd(2)
+        lt(1)
+    lt(30)
+    fd(3)
+    for i in range(20):
+        fd(2)
+        lt(1)
+    lt(200)
+    fd(2)
+    for i in range(12):
+        fd(2)
+        lt(1)
+    lt(110)
+    fd(2)
+    for i in range(20):
+        fd(i)
+        lt(2)
+    lt(320)
+    fd(3)
+    for i in range(15):
+        fd(5)
+        lt(1)
+    lt(130)
+    fd(2)
+    for i in range(10):
+        fd(5)
+        lt(1)
+    lt(260)
+    fd(2)
+    for i in range(20):
+        fd(5)
+        lt(2)
+    lt(260)
+    fd(3)
+    for i in range(35):
+        fd(2)
+        lt(1)
+    lt(140)
+    fd(3)
+    for i in range(35):
+        fd(5)
+        rt(2)
+    lt(130)
+    fd(3)
+    for i in range(35):
+        fd(2)
+        lt(1)
+    lt(310)
+    for i in range(20):
+        fd(2)
+        lt(1)
+    lt(260)
+    fd(2)
+    for i in range(20):
+        fd(2)
+        lt(1)
+    lt(130)
+    for i in range(20):
+        fd(2)
+        lt(1)
+    lt(280)
+    fd(40)
+    lt(230)
+    fd(45)
+    lt(150)
+    fd(3)
+    for i in range(25):
+        fd(4)
+        lt(1)
+    lt(330)
+    fd(20)
+    end_fill()
+    # глаза
+    do_tp(xcor() - 50, ycor() - 30)
+    color('white')
+    begin_fill()
+    circle(10)
+    end_fill()
+    do_tp(xcor() - 2, ycor() - 5)
+    color('black')
+    dot(13)
+    # жабры
+    do_tp(xcor() + 30, ycor() - 40)
+    color('white')
+    lt(220)
+    for i in range(15):
+        fd(2)
+        lt(1)
+    do_tp(xcor() - 5, ycor() - 30)
+    color('white')
+    lt(350)
+    for i in range(15):
+        fd(2)
+        lt(1)
+    do_tp(xcor() - 5, ycor() - 30)
+    color('white')
+    lt(340)
+    for i in range(15):
+        fd(2)
+        lt(1)
+
+
+def draw_buble(x, y):
+    pensize(1)
+    do_tp(x, y)
+    color('dark turquoise', 'light steel blue')
+    circle(20)
+    do_tp(xcor() - 1.5, ycor() + 30)
+    color('white')
+    begin_fill()
+    pensize(10)
+    fd(1)
+    end_fill()
+
+
+draw_sand()
+lt(180)
+for i in range(3):
+    draw_plants(plant_coor[i][0], plant_coor[i][1])
+    rt(90)
+
+for i in range(10):
+    lt(50)
+    draw_seaweed(seaweed_coor[i][0], seaweed_coor[i][1])
+    pu()
+    home()
+    pd()
+
+for i in range(3):
+    draw_fish(fish_coor[i][0], fish_coor[i][1])
+    rt(20)
+
+draw_shark(0, 100)
+
+for i in range(11):
+    draw_buble(bubble_coor[i][0], bubble_coor[i][1])
+
+ht()
+t.penup()
+t.goto(-400, -170)
+t.pendown()
+t.color('red')
+t.fillcolor('red')
+t.begin_fill()
+t.left(36)
+for i in range(5):
+    t.fd(50)
+    t.left(144)
+t.end_fill()
+
+ht()
+t.penup()
+t.goto(-200, -300)
+t.pendown()
+t.color('light coral')
+t.fillcolor('light coral')
+t.begin_fill()
+t.left(36)
+for i in range(5):
+    t.fd(50)
+    t.left(144)
+t.end_fill()
+
+
+t.ht()
+t.penup()
+t.goto(320, -320)
+t.pendown()
+t.color('light cyan')
+t.fillcolor('light cyan')
+t.begin_fill()
+t.left(36)
+for i in range(5):
+    t.fd(50)
+    t.left(144)
+t.end_fill()
+
+t.ht()
+t.penup()
+t.goto(100, -260)
+t.pendown()
+t.color('sandy brown')
+t.fillcolor('sandy brown')
+t.begin_fill()
+t.left(36)
+for i in range(5):
+    t.fd(50)
+    t.left(144)
+t.end_fill()
+
+mainloop()
